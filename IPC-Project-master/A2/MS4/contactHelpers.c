@@ -492,27 +492,30 @@ void deleteContact(const struct Contact contacts[], int size)
         printf("*** Contact NOT FOUND ***\n");
     }*/
 
-    char phoneNum[11] = { 0 };
-    int index = 0;
-    int i = 0;
-
+    char phoneNum[11];
+    int i;
     printf("\nEnter the cell number for the contact: ");
     getTenDigitPhone(phoneNum);
-    index = findContactIndex(contacts, size, phoneNum);
+    int index = findContactIndex(contacts, size, phoneNum);
 
-    if (yes() == -1)
+    if (index != -1)
     {
-        printf("*** Contact NOT FOUND ***\n");
+        printf("\nContact found:\n");
+        displayContact(&contacts[index]);
+        printf("\nCONFIRM: Delete this contact? (y or n): ");
+        if (yes() == 1)
+        {
+            for (i = index; i < *contacts->numbers.cell; i++)
+            {
+                contacts->numbers.cell[i] = contacts->numbers.cell[i + 1];
+            }
+            contacts->numbers.cell--;
+            printf("--- Contact deleted! ---\n");
+        }
     }
     else
     {
-        for (index = i + 1; contacts[index].numbers; index++)
-        {
-            contacts[index].numbers = contacts[index + 1].numbers;
-
-        }
-        contacts[index].numbers--;
-        printf("--- Contact deleted! ---\n");
+        printf("*** Contact NOT FOUND ***\n");
     }
 }
 
