@@ -3,26 +3,29 @@
 
 #define MAX_ITEMS_IN_SALE 100
 #define NUM_CATS 7
+#include <stdlib.h>
 struct Items
 {
 	int amount;
 	int category;
-	float price;
+	double price;
 	int byWeight;
 };
 
 struct StockRecord
 {
 	struct Items items;
-	char productname;
-	float sales;
+	char *productname;
+	double sales;
 };
 
 struct SalesRecord
 {
-	struct Items items;
-	char productname;
-	float sales;
+	int amount;
+	int id;
+	
 };
 
+
+void centreText(int num, char symbol, char* title);
 #endif // !STOCK_H_

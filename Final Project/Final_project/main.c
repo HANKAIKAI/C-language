@@ -1,7 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include "stock.h"
-#include "stock.c"
+
 #define MAX_STOCK_ENTRIES 100
 /***************************************************************/
 /* Students who are implementing the file reading version for  */
@@ -23,6 +23,7 @@ int main(void)
     printf("Enter current stock in format amount, category, price, byWeight, name (0 amount to end):\n");
 
     numStockItems = readStockItems(storeStock, MAX_STOCK_ENTRIES, STOCK_FROM_STDIN);
+    printf("%d", numStockItems);
 
     printf("\n");
     centreText(70, '*', " Seneca Groceries - Opening Stock ");
@@ -64,7 +65,7 @@ int main(void)
     printf("\n");
     printStockReport(storeStock, numStockItems);
     printf("\n");
-    for (cat = 0; cat < 5; cat++)
+    /*for (cat = 0; cat < 5; cat++)
     {
         getTopSellers(storeStock, numStockItems, topSellers, 3, cat);
         printTopSellers(storeStock, topSellers, 3, cat);
@@ -73,7 +74,8 @@ int main(void)
     {
         getTopSellers(storeStock, numStockItems, topSellers, 2, cat);
         printTopSellers(storeStock, topSellers, 2, cat);
-    }
+    }*/
+    system("pause");
     return 0;
 }
 
