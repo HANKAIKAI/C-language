@@ -46,6 +46,7 @@ int main(void)
             totalSales += sale;
             totalSaleItems += numSaleItems;
             numSales++;
+            printf("%lf", sale);
         }
     } while (numSaleItems > 0);
 
@@ -65,7 +66,7 @@ int main(void)
     printf("\n");
     printStockReport(storeStock, numStockItems);
     printf("\n");
-    /*for (cat = 0; cat < 5; cat++)
+    for (cat = 0; cat < 5; cat++)
     {
         getTopSellers(storeStock, numStockItems, topSellers, 3, cat);
         printTopSellers(storeStock, topSellers, 3, cat);
@@ -74,7 +75,7 @@ int main(void)
     {
         getTopSellers(storeStock, numStockItems, topSellers, 2, cat);
         printTopSellers(storeStock, topSellers, 2, cat);
-    }*/
+    }
     system("pause");
     return 0;
 }
