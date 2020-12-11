@@ -1,3 +1,14 @@
+//==============================================
+// Name:           Yuankai Han
+// Student Number: 154477194
+// Email:          yhan77@myseneca.ca
+// Section:        NOO
+// Date:           
+//==============================================
+// Final Assessment     
+//==============================================
+
+
 #include <stdio.h>
 #include <string.h>
 #include "stock.h"
@@ -73,7 +84,7 @@ void printStockReport(struct StockRecord *storeStock, int numStockItems)
 	printf("ID                       Product        Category    Price Quantity\n");
 	for (i = 1; i < numStockItems; i++)
 	{
-		printf("%d %30s %14s %9.2lf %8d\n", i, storeStock[i].productname, categories[storeStock[i].items.category-1], storeStock[i].items.price, storeStock[i].items.amount);
+		printf("%4d%31s%16s%8.2lf%9d\n", i, storeStock[i].productname, categories[storeStock[i].items.category-1], storeStock[i].items.price, storeStock[i].items.amount);
 		
 	}
 }
@@ -140,7 +151,7 @@ double printSalesReport(struct StockRecord* storeStock, struct SalesRecord* sale
 	printf("\n");
 	for (i = 0; i < numSaleItems; i++)
 	{
-		printf("%s %lf %lf\n", storeStock[saleItems[i].id].productname, storeStock[saleItems[i].id].items.price, saleItems[i].amount * storeStock[saleItems[i].id].items.price);
+		printf("%30s %10.lf %9.lf\n", storeStock[saleItems[i].id].productname, storeStock[saleItems[i].id].items.price, saleItems[i].amount * storeStock[saleItems[i].id].items.price);
 
 		sum += saleItems[i].amount * storeStock[saleItems[i].id].items.price;	
 
@@ -151,9 +162,10 @@ double printSalesReport(struct StockRecord* storeStock, struct SalesRecord* sale
 
 
 	}
-	//printf("Purchase Total                            %lf\n", sum);
-	//printf("Tax                                        %lf\n", tax);
-	//printf("Total                                     %lf\n", sum + tax);
+	printf("Purchase Total%36.2lf\n", sum);
+	printf("Tax%47.2lf\n", tax);
+	printf("Total%45.2lf\n", sum + tax);
+	printf("Thank you for shopping at Seneca!\n");
 	return sum;
 }
 
@@ -179,7 +191,7 @@ void getTopSellers(struct StockRecord* storeStock, int numStockItems, struct Sal
 	{
 		if (i < filterIndex)
 		{
-			memcpy(&topSeller[i], &filter[i], sizeof(struct SalesRecord));      // ½Æ»s sizeof(struct SalesRecord) µ¹ topSeller[i]
+			memcpy(&topSeller[i], &filter[i], sizeof(struct SalesRecord));      // copied sizeof(struct SalesRecord) to topSeller[i]
 		}
 		else
 		{
@@ -206,16 +218,17 @@ void printTopSellers(struct StockRecord* storeStock, struct SalesRecord* topSell
 
 	int i;
 	printf("---------- Top %d sellers in %s ----------\n", topk, categories[category]);
+	printf("Rank                       Product   Sales\n");
 	for (i = 0; i < topk; i++)
 	{
 		//printf("%d %s %lf\n", i + 1, storeStock[topSeller[i].id].productname, topSeller[i].amount);
 		if (topSeller[i].id > 0)
 		{
-			printf("%d %s %lf\n", i + 1, storeStock[topSeller[i].id].productname, (double)topSeller[i].amount);
+			printf("%4d%30s%9.2lf\n", i + 1, storeStock[topSeller[i].id].productname, (double)topSeller[i].amount);
 		}
 		else
 		{
-			printf("%d %s %lf\n", i + 1, "<none>", (double)topSeller[i].amount);
+			printf("%4d%30s%9.2lf\n", i + 1, "<none>", (double)topSeller[i].amount);
 		}
 	}
 }
